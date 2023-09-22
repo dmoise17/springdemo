@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package com.vedana.springdemo;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+message Employee {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+}
+
+message Employees {
+  repeated Employee employees = 1;
+}
+
+service EmployeeService {
+  rpc FindById(google.protobuf.StringValue) returns (Employee) {}
+  rpc FindAll(google.protobuf.Empty) returns (Employees) {}
+  rpc CreateEmployee(Employee) returns (Employee) {}
+}
